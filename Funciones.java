@@ -115,7 +115,7 @@ class Funciones {
         if (s1.length() > s2.length()){
             return false; //porque si pongo res=false no corta y se mete en el for??
         }
-        for(int i=0, j=0;i<s1.length();i++ , j++){
+        for(int i=0, j=0;i<s1.length();i++ , j++){   //no tiene sentido  agregar a j se puede usar solo con i pero estaba probando usar 2 variables
                 if (s1.charAt(i)==s2.charAt(j)){
                         res=true;
                 }
