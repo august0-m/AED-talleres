@@ -1,31 +1,57 @@
 package aed;
 
 public class Recordatorio {
+    private String _mensaje;
+    private Fecha _fecha;
+    private Horario _horario;
 
     public Recordatorio(String mensaje, Fecha fecha, Horario horario) {
-        throw new UnsupportedOperationException("No implementada aun");
+        mensaje = _mensaje;
+        fecha = _fecha;
+        horario = _horario; 
     }
 
     public Horario horario() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return _horario;
     }
 
     public Fecha fecha() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return _fecha;
     }
 
     public String mensaje() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return _mensaje;
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("No implementada aun");
+        //StringBuffer sBuffer = new StringBuffer();
+        //sBuffer.append(_mensaje);
+        //sBuffer.append("@");
+        //sBuffer.append(_fecha);
+        //sBuffer.append(_horario);
+        return String.valueOf(_mensaje) + "@" + String.valueOf(_fecha) + String.valueOf(_horario);
+        //return sBuffer.toString();
     }
 
     @Override
     public boolean equals(Object otro) {
-        throw new UnsupportedOperationException("No implementada aun");
+        boolean res = false;
+        boolean noex = (otro == null);
+        boolean distinta_clase = (otro.getClass() != this.getClass());
+        if (distinta_clase || noex){
+            return false;
+        }
+        boolean mismo_msj = ((Recordatorio)otro).mensaje() == this.mensaje();
+        boolean misma_fecha = ((Recordatorio)otro).fecha() == this.fecha();
+        boolean mismo_horario = ((Recordatorio)otro).horario() == this.horario();
+        if(mismo_horario && misma_fecha && mismo_msj){
+            res = true;
+        }
+        else{
+            res=false;
+        }
+        return res;
     }
 
 }

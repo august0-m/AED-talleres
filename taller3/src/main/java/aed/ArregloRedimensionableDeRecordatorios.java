@@ -2,8 +2,11 @@ package aed;
 
 class ArregloRedimensionableDeRecordatorios implements SecuenciaDeRecordatorios {
 
+    private Recordatorio[] _recordatorio;
+
+
     public ArregloRedimensionableDeRecordatorios() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return ArregloRedimensionableDeRecordatorios._recordatorio();
     }
 
     public ArregloRedimensionableDeRecordatorios(ArregloRedimensionableDeRecordatorios vector) {
@@ -11,28 +14,36 @@ class ArregloRedimensionableDeRecordatorios implements SecuenciaDeRecordatorios 
     }
 
     public int longitud() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return _recordatorio.length;
     }
 
-    public void agregarAtras(Recordatorio i) {
-        throw new UnsupportedOperationException("No implementada aun");
+    public void agregarAtras(Recordatorio i) {          
+        throw new UnsupportedOperationException("No implementada aun") ;
+   //   Recordatorio seqinicial = this._recordatorio();
+     // Recordatorio seqnueva = new Recordatorio(null, null, null);
+      //seqnueva.lenght = seqinicial.lenght +1;
+      //int longnueva = _recordatorio.length + 1;
+      
+
+
     }
 
     public Recordatorio obtener(int i) {
-        throw new UnsupportedOperationException("No implementada aun");
+        return _recordatorio[i];
     }
 
-    public void quitarAtras() {
-        throw new UnsupportedOperationException("No implementada aun");
+    public void quitarAtras() { //dudosisimo
+        _recordatorio[(_recordatorio.length) - 1 ] = null; 
     }
 
     public void modificarPosicion(int indice, Recordatorio valor) {
-        throw new UnsupportedOperationException("No implementada aun");
+        _recordatorio[indice]= valor;
 
     }
 
     public ArregloRedimensionableDeRecordatorios copiar() {
-        throw new UnsupportedOperationException("No implementada aun");
+   //     ArregloRedimensionableDeRecordatorios res
+    throw new UnsupportedOperationException("No implementada aun") ;
     }
 
 }
