@@ -25,22 +25,31 @@ class ArregloRedimensionableDeRecordatorios implements SecuenciaDeRecordatorios 
          return res;
     }
 
+  
     public void agregarAtras(Recordatorio i) {   
-      Recordatorio[] seqnueva = new Recordatorio[this.longitud()+1] ;  // le agrego un espacio a recordatorio
-        for (int j = 0; j < this.longitud(); j++) {
+      Recordatorio[] seqnueva = new Recordatorio[this.longitud()+1] ; 
+
+      for (int j = 0; j < this.longitud(); j++) {
         seqnueva[j] = _recordatorio[j];
-    }
-    seqnueva[seqnueva.length - 1] = i;
-    _recordatorio = seqnueva;          
-    }
+       }
+       seqnueva[seqnueva.length - 1] = i;
+       _recordatorio = seqnueva; 
+  }                                   
     
     public Recordatorio obtener(int i) {
         return _recordatorio[i];
     }
-
     public void quitarAtras() { //dudosisimo
-        _recordatorio[(_recordatorio.length) - 1 ] = null; 
-    }
+    if (_recordatorio != null && _recordatorio.length > 0) {
+       // _recordatorio[(_recordatorio.length) - 1 ] = null; 
+       Recordatorio[] nuevoarreglo = new Recordatorio[this.longitud()-1];
+       for (int i = 0; i < nuevoarreglo.length; i++) {
+        nuevoarreglo[i] = _recordatorio[i];
+       }
+       _recordatorio= nuevoarreglo;
+   
+   }
+   }
 
     public void modificarPosicion(int indice, Recordatorio valor) {
         _recordatorio[indice]= valor;
