@@ -10,7 +10,8 @@ public class Fecha {
     }
 
     public Fecha(Fecha fecha) {
-        throw new UnsupportedOperationException("No implementada aun");
+       _dia= fecha._dia;
+       _mes= fecha._mes;
     }
 
     public Integer dia() {
@@ -34,7 +35,7 @@ public class Fecha {
         if (oed || laclase){
             return false;
         }
-        boolean igualmes = ((Fecha) otra).mes() == this.mes();
+        boolean igualmes = ((Fecha)otra).mes() == this.mes();
         boolean igualdia = ((Fecha)otra).dia() == this.dia();
          if (igualmes && igualdia){
             res= true;

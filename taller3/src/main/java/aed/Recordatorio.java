@@ -7,7 +7,7 @@ public class Recordatorio {
 
     public Recordatorio(String mensaje, Fecha fecha, Horario horario) {
         mensaje = _mensaje;
-        fecha = _fecha;
+        fecha = new Fecha(fecha.dia(),fecha.mes());
         horario = _horario; 
     }
 
@@ -16,7 +16,9 @@ public class Recordatorio {
     }
 
     public Fecha fecha() {
-        return _fecha;
+        Fecha lafecha = new Fecha(_fecha.dia(),_fecha.mes());
+        return lafecha;
+       // return  (new Fecha(this.fecha()));
     }
 
     public String mensaje() {
@@ -24,7 +26,7 @@ public class Recordatorio {
     }
 
     @Override
-    public String toString() {
+    public String toString() {  //se puede hacer de otras manera tmb
         //StringBuffer sBuffer = new StringBuffer();
         //sBuffer.append(_mensaje);
         //sBuffer.append("@");
