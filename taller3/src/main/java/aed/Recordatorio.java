@@ -37,22 +37,19 @@ public class Recordatorio {
 
     @Override
     public boolean equals(Object otro) {
-        boolean res = false;
-        boolean noex = (otro == null);
-        boolean distinta_clase = (otro.getClass() != this.getClass());
-        if (distinta_clase || noex){
-            return false;
-        }
-        boolean mismo_msj = ((Recordatorio)otro).mensaje() == this.mensaje();
-        boolean misma_fecha = ((Recordatorio)otro).fecha() == this.fecha();
-        boolean mismo_horario = ((Recordatorio)otro).horario() == this.horario();
+        Recordatorio eldistinto= (Recordatorio) otro;
+        boolean res= false;
+        if (this.getClass()!= otro.getClass() );
+         res= false;   
+        boolean mismo_horario = (this.horario().equals(eldistinto.horario()));
+        boolean misma_fecha = (this.fecha().equals(eldistinto.fecha()));
+        boolean mismo_msj = (this.mensaje().equals(eldistinto.mensaje()));
         if(mismo_horario && misma_fecha && mismo_msj){
             res = true;
         }
         else{
-            res=false;
+            res = false;
         }
-        return res;
+    return res;
     }
-
 }
