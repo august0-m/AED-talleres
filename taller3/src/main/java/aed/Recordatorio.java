@@ -5,10 +5,10 @@ public class Recordatorio {
     private Fecha _fecha;
     private Horario _horario;
 
-    public Recordatorio(String mensaje, Fecha fecha, Horario horario) {
-        mensaje = _mensaje;
-        fecha = new Fecha(fecha.dia(),fecha.mes());
-        horario = _horario; 
+    public Recordatorio(String mensaje, Fecha fecha, Horario horario) { //lo habia asignado al reves xdnt
+        _mensaje = mensaje;
+        _fecha = new Fecha(fecha.dia(),fecha.mes());
+        _horario = horario; 
     }
 
     public Horario horario() {
@@ -18,7 +18,6 @@ public class Recordatorio {
     public Fecha fecha() {
         Fecha lafecha = new Fecha(_fecha.dia(),_fecha.mes());
         return lafecha;
-       // return  (new Fecha(this.fecha()));
     }
 
     public String mensaje() {
