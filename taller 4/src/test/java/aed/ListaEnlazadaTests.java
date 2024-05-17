@@ -225,7 +225,7 @@ class ListaEnlazadaTests {
 
             public int x;
             public int y;
-        }
+        } throw new UnsupportedOperationException("No implementada aun")
 
         ListaEnlazada<Punto2D> lista = new ListaEnlazada<>();
         Punto2D p = new Punto2D(0, 1);
