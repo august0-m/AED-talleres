@@ -34,12 +34,12 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     public void agregarAdelante(T elem) {
         Nodo nuevo = new Nodo(null,elem,null);
     
-        if (this.longitud()==0){
-        this.primero= nuevo;    
-        this.ultimo=nuevo;
+        if (this.longitud() == 0){
+        this.primero = nuevo;    
+        this.ultimo = nuevo;
         }
         else{
-        (this.primero).anterior= nuevo;
+        (this.primero).anterior = nuevo;
         nuevo.siguiente = this.primero;
         this.primero = nuevo;
         }
@@ -48,12 +48,12 @@ public class ListaEnlazada<T> implements Secuencia<T> {
 
     public void agregarAtras(T elem) {
         Nodo nuevo = new Nodo(null,elem,null);
-        if (this.longitud()==0){
-        this.primero= nuevo;    
-        this.ultimo=nuevo;
+        if (this.longitud() == 0){
+        this.primero = nuevo;    
+        this.ultimo = nuevo;
         }
         else{
-        (this.ultimo).siguiente= nuevo;
+        (this.ultimo).siguiente = nuevo;
         nuevo.anterior = this.ultimo;
         this.ultimo = nuevo;
         }
@@ -62,110 +62,154 @@ public class ListaEnlazada<T> implements Secuencia<T> {
 
     public T obtener(int i) {
         Nodo actual = this.primero;
-        int j=0;
+        int j = 0;
         while (i != j){
             j++;
-            actual= actual.siguiente;
+            actual = actual.siguiente;
         }
         return actual.valor;
     }
 
     public void eliminar(int i) {
-       // Nodo actual =this.primero;
-       // int j=0;
-       // if(i==0){
-       //  this.primero = (this.primero).siguiente;
-       // }
-       // while(i!= j){
-       //  j++;
-       //  actual=actual.siguiente;
-       // }
-       // (actual.anterior).siguiente= actual.siguiente;
-       // _longitud--;
-
-       Nodo actual = this.primero;
-       int j=0;
-
-       if(i==0){
-
-            Nodo next = primero.siguiente;
-
-            next.anterior = null;
-
-            this.primero = next;
-
-            _longitud--;
-         return;
-       }
-
-       if(i==_longitud-1){
-            Nodo back = ultimo.anterior;
-
-            back.siguiente = null;
-
-            this.ultimo= back;
-
-            _longitud--;
-        return;
-      }
-
-
-       while (i != j){
-           j++;
-           actual= actual.siguiente;
-       }
-        // actual va a ser eliminado
-
-        Nodo back = actual.anterior;
-        Nodo next = actual.siguiente;
-        
-        next.anterior= back;
-        back.siguiente= next;
-
-        _longitud--;
+     Nodo actual = this.primero;
+     int j = 0;
+     if(i == 0){
+      this.primero = (this.primero).siguiente;
+      _longitud--;
+      return;
+     }
+     while(i != j){
+      j++;
+      actual = actual.siguiente;
+     }
+     (actual.anterior).siguiente = actual.siguiente;
+     _longitud--;
 
     }
 
     public void modificarPosicion(int indice, T elem) {
-        throw new UnsupportedOperationException("No implementada aun");
+        Nodo actual = this.primero;
+        int j=0;
+        while(indice != j){
+            j++;
+            actual = actual.siguiente;
+        }
+        actual.valor = elem;
     }
 
     public ListaEnlazada<T> copiar() {
-        throw new UnsupportedOperationException("No implementada aun");
+        ListaEnlazada<T> ListaNueva = new ListaEnlazada<T>();
+        Nodo actual = this.primero ;
+        while (actual != null) {
+            ListaNueva.agregarAtras(actual.valor);
+            actual = actual.siguiente;
+        }
+        return ListaNueva; 
     }
 
-    public ListaEnlazada(ListaEnlazada<T> lista) {
-        throw new UnsupportedOperationException("No implementada aun");
+    public ListaEnlazada(ListaEnlazada<T> lista) {     
+      //  ListaEnlazada<T> ListaNueva = new ListaEnlazada<T>();   //no inicio una lista, uso this porq es el objeto que estoy creando
+        Nodo actual = lista.primero ;                           //inicio la lista q quiero copiar
+        while (actual != null) {                                //mientras no sea null q siga
+            this.agregarAtras(actual.valor);              
+            actual = actual.siguiente;                          //voy al siguiente
+        }
+        
+       // throw new UnsupportedOperationException("No implementada aun");
     }
     
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("No implementada aun");
+        StringBuffer sBuffer = new StringBuffer();
+        //sBuffer.append(fechaActual().toString());
+        sBuffer.append("[");
+        for (int i = 0;i<this.longitud();i++){
+            if (i == 0){
+                sBuffer.append(this.obtener(i));
+                sBuffer.append(",");
+            }
+            if (i != 0 && i < this.longitud() - 1){
+                sBuffer.append(" ");
+                sBuffer.append(this.obtener(i));
+                sBuffer.append(",");
+            }
+            if (i == this._longitud -1){
+                sBuffer.append(" ");
+                sBuffer.append(this.obtener(i));
+            }
+        }
+        sBuffer.append("]");
+        return sBuffer.toString();
     }
 
     private class ListaIterador implements Iterador<T> {
-    	// Completar atributos privados
+        private Nodo primero;
+        private Nodo ultimo;
+       // private int _longitud;
+
+        private class Nodo {
+            T valor;
+            Nodo siguiente;
+            Nodo anterior;
+   
+           public Nodo(Nodo anterior,T valor, Nodo siguiente){
+               this.valor = valor;
+               this.siguiente = siguiente;
+               this.anterior = anterior;
+           }
+   
+       }
 
         public boolean haySiguiente() {
-	        throw new UnsupportedOperationException("No implementada aun");
+          //  return this.primero != null && (this.primero).siguiente != null;
+            boolean res = false;
+            Nodo actual = this.primero ;
+            if ( actual != null && actual.siguiente != null ){
+                res = true;
+            }
+          //  //else{
+          //      
+          //  //}
+            return res;
         }
         
         public boolean hayAnterior() {
-	        throw new UnsupportedOperationException("No implementada aun");
+            boolean res = true;
+            //Nodo actual = this.primero ;
+            if ( this.primero == null || this.anterior() == null ){
+                res = false;
+            }
+           // else{
+             //   return true;
+            //}
+            return res;
         }
 
         public T siguiente() {
-	        throw new UnsupportedOperationException("No implementada aun");
+            Nodo actual = this.primero ;
+            if (actual.siguiente != null){
+                return (actual.siguiente).valor;
+            }
+            else{
+                return null;
+            }
         }
         
 
         public T anterior() {
-	        throw new UnsupportedOperationException("No implementada aun");
+            Nodo actual = this.primero ;
+            if (actual.anterior != null){
+                return (actual.anterior).valor;
+            }
+            else{
+                return null;
+            }
         }
-    }
+        }
+    
 
     public Iterador<T> iterador() {
-	    throw new UnsupportedOperationException("No implementada aun");
+        return new ListaIterador();
     }
 
 }
