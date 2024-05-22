@@ -143,63 +143,58 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     }
 
     private class ListaIterador implements Iterador<T> {
-        private Nodo primero;
-        private Nodo ultimo;
-       // private int _longitud;
+        Nodo actual;                        //no entendi muy bien porque hay q poner esto
 
-        private class Nodo {
-            T valor;
-            Nodo siguiente;
-            Nodo anterior;
-   
-           public Nodo(Nodo anterior,T valor, Nodo siguiente){
-               this.valor = valor;
-               this.siguiente = siguiente;
-               this.anterior = anterior;
-           }
-   
-       }
+        public ListaIterador(){
+            actual = primero;
+        }
 
         public boolean haySiguiente() {
-          //  return this.primero != null && (this.primero).siguiente != null;
             boolean res = false;
-            Nodo actual = this.primero ;
-            if ( actual != null && actual.siguiente != null ){
-                res = true;
+            if ( actual != null){     // no entiendo porq no seria actual.siguiente 
+                return true;
             }
-          //  //else{
-          //      
-          //  //}
             return res;
         }
         
         public boolean hayAnterior() {
-            boolean res = true;
-            //Nodo actual = this.primero ;
-            if ( this.primero == null || this.anterior() == null ){
-                res = false;
+            boolean res = false;
+            if(actual == primero){
+                return false;
             }
-           // else{
+            if (actual == ultimo.siguiente){
+                return true;
+            }
+            if ( actual != null ){
+                return true;
+            }
+           // if (actual.anterior != null ){
              //   return true;
             //}
+            //if ()
             return res;
         }
 
         public T siguiente() {
-            Nodo actual = this.primero ;
-            if (actual.siguiente != null){
-                return (actual.siguiente).valor;
+            if (actual != null){
+                T valor = actual.valor;
+                actual = actual.siguiente;
+                return valor;
             }
             else{
                 return null;
             }
         }
         
-
         public T anterior() {
-            Nodo actual = this.primero ;
-            if (actual.anterior != null){
-                return (actual.anterior).valor;
+            if (actual != null){
+                T valor = (actual.anterior).valor;
+                actual = actual.anterior;
+                return valor;
+            }
+            if (actual == null && hayAnterior()== true){
+                T valor = ultimo.valor;
+                return valor;
             }
             else{
                 return null;
@@ -209,7 +204,8 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     
 
     public Iterador<T> iterador() {
-        return new ListaIterador();
+         return new ListaIterador();
     }
+ 
 
 }
